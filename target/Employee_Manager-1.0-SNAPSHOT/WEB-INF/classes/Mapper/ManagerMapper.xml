@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ManagerDao">
+    <select id="login"  resultType="com.pojo.manager" parameterType="com.pojo.manager">
+		select * from euser where username=#{username} and password=#{password}
+	</select>
+	<select id="forget"  resultType="String" parameterType="com.pojo.manager">
+		select password from euser where username=#{username}
+	</select>
+	<insert id="register" parameterType="com.pojo.manager">
+		insert into euser(eid,username,sex,tel,did,pid,uname,password,email,indate) values (null, #{username}, #{sex},#{tel},#{did},#{pid},#{uname},#{password},#{email},#{indate})
+	</insert>
+	<select id="ShowEmployee"  resultType="map">
+		select e.eid,e.username,e.sex,e.tel,d.dname dname,p.pname pname,e.uname,e.password,e.email,e.indate from euser e,depts d,positions p where type=2 and e.did=d.did and e.pid=p.pid
+	</select>
+	<delete id="delete" parameterType="Integer">
+			delete from euser where eid=#{eid}
+	</delete>
+	<update parameterType="com.pojo.manager" id="fix">
+       update euser set username=#{username},sex=#{sex},tel=#{tel},did=#{did},pid=#{pid},uname=#{uname},password=#{password},email=#{email},indate=#{indate} where eid=#{eid}
+	</update>
+	<select id="selectAllManagerByPage"  resultType="map" parameterType="map">
+		select e.eid,e.username,e.sex,e.tel,d.dname dname,p.pname pname,e.uname,e.password,e.email,e.indate from euser e,depts d,positions p  where type=2 and e.did=d.did and e.pid=p.pid  order by eid limit #{startIndex}, #{perPageSize}
+	</select>
+	<select id="fixById1"  resultType="com.pojo.manager" parameterType="int">
+		select * from euser where eid=#{eid}
+	</select>
+	<update parameterType="com.pojo.manager" id="fixP">
+       update euser set username=#{username},sex=#{sex},tel=#{tel},uname=#{uname},password=#{password},email=#{email},indate=#{indate} where eid=#{eid}
+	</update>
+</mapper>

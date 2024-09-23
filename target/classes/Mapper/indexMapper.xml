@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- com.dao.AdminTypeDao对应Dao接口 -->
+<mapper namespace="com.dao.indexDao">
+    <select id="view1"  resultType="com.pojo.dept" parameterType="com.pojo.dept">
+		select * from depts
+	</select>
+    <select id="view2"  resultType="com.pojo.positions">
+		select * from positions
+	</select>
+	<select id="fixById"  resultType="map" parameterType="int">
+		select e.username,e.sex,e.tel,d.dname dname,p.pname pname,e.uname,e.password,e.email,e.indate indate from euser e,depts d,positions p where type=2 and e.did=d.did and e.pid=p.pid and e.eid=#{eid}
+	</select>
+</mapper>

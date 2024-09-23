@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.deptDao">
+    <select id="showD"  resultType="com.pojo.dept">
+		select * from depts
+	</select>
+	<select id="fixById"  resultType="dept" parameterType="int">
+		select *from depts where did=#{did}
+	</select>
+	<update parameterType="com.pojo.dept" id="Fix">
+       update depts set dname=#{dname},duty_man=#{duty_man},cdate=#{cdate} where did=#{did}
+	</update>
+	<insert id="toAdd" parameterType="com.pojo.dept">
+		insert into depts(did,dname,duty_man,cdate) values (null, #{dname},#{duty_man},#{cdate})
+	</insert>
+	<select id="selectAllDeptByPage"  resultType="dept" parameterType="map">
+		select * from depts order by did limit #{startIndex}, #{perPageSize}
+	</select>
+</mapper>

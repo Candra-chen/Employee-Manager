@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.incomeDao">
+    <select id="ShowDI"  resultType="map" parameterType="int">
+            select i.id,e.username username,d.duty_man duty_man,i.itype,i.ireason,i.idate,i.staut  from euser e,depts d,income i where e.eid=i.eid and d.did=i.did and e.eid=#{eid}
+     </select>
+    <select id="ShowDI1"  resultType="map">
+            select i.id,e.username username,d.duty_man duty_man,i.itype,i.ireason,i.idate,i.staut  from euser e,depts d,income i where e.eid=i.eid and d.did=i.did and i.staut!=0
+        </select>
+    <update parameterType="com.pojo.income" id="fix">
+       update income set itype=#{itype},ireason=#{ireason},idate=#{idate},staut=#{staut} where id=#{id}
+	</update>
+    <delete id="delete" parameterType="int">
+			delete from income where id=#{id}
+	</delete>
+    <insert id="toAdd" parameterType="com.pojo.income">
+		insert into income (id,eid,itype,ireason,idate,did,staut) values (null,#{eid}, #{itype},#{ireason},#{idate},#{did},#{staut})
+	</insert>
+    <select id="selectAllInComeByPage"  resultType="map" parameterType="map">
+		select i.id,e.username username,d.duty_man duty_man,i.itype,i.ireason,i.idate,i.staut  from euser e,depts d,income i where  e.eid=i.eid and d.did=i.did  and i.eid=#{eid} order by id limit #{startIndex}, #{perPageSize}
+	</select>
+    <select id="selectAllInComeByPage1"  resultType="map" parameterType="map">
+		select i.id,e.username username,d.duty_man duty_man,i.itype,i.ireason,i.idate,i.staut  from euser e,depts d,income i where  e.eid=i.eid and d.did=i.did and i.staut!=0 order by id limit #{startIndex}, #{perPageSize}
+	</select>
+    <select id="fixById1"  resultType="com.pojo.income" parameterType="int">
+		select * from income where id=#{id}
+	</select>
+</mapper>

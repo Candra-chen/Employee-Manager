@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true" />
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="defaultExecutorType" value="REUSE" />
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!-- 打开延迟加载的开关 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 将积极加载改为按需加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="manager" type="com.pojo.manager"/>
+        <typeAlias type="com.pojo.dept" alias="dept"/>
+        <typeAlias type="com.pojo.positions" alias="positions"/>
+        <typeAlias type="com.pojo.income" alias="income"/>
+        <typeAlias type="com.pojo.check1" alias="check1"/>
+        <typeAlias type="com.pojo.attends" alias="attends"/>
+        <typeAlias type="com.pojo.ship" alias="ship"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="Mapper/ManagerMapper.xml"/>
+        <mapper resource="Mapper/indexMapper.xml"/>
+        <mapper resource="Mapper/deptMapper.xml"/>
+        <mapper resource="Mapper/posMapper.xml"/>
+        <mapper resource="Mapper/attendMapper.xml"/>
+        <mapper resource="Mapper/KQMapper.xml"/>
+        <mapper resource="Mapper/incomeMapper.xml"/>
+        <mapper resource="Mapper/shipMapper.xml"/>
+    </mappers>
+</configuration>
+

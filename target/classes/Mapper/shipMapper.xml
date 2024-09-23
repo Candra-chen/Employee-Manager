@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.shipDao">
+    <select id="ShowS"  resultType="map" parameterType="int">
+		select s.sid,e.username username,s.bship, s.aship+i.staut as aship,s.gship,s.total,s.sdate from ship s,euser e,income i where e.eid=#{eid} and e.eid=s.eid and s.id=i.id
+	</select>
+	<select id="ShowS1"  resultType="map">
+		select s.sid,e.username username,s.bship,s.aship+i.staut as aship,s.gship,s.total,s.sdate from ship s,euser e,income i where e.eid=s.eid and s.id=i.id
+	</select>
+    <select id="fixById"  resultType="map" parameterType="Integer">
+		select  s.sid,s.eid,s.bship,s.aship,s.gship,s.total,s.sdate from ship s where  s.sid=#{sid}
+	</select>
+    <update parameterType="com.pojo.ship" id="Fix">
+       update ship s,income i set s.bship=#{bship},s.aship=#{aship},s.gship=#{gship},s.total=#{bship}+#{aship}+#{gship}+i.staut where sid=#{sid} and s.eid=i.eid
+	</update>
+    <insert id="toAdd" parameterType="com.pojo.ship">
+		insert into ship(sid,eid,bship,aship,gship,total,sdate,id) values (null, #{eid},#{bship},#{aship},#{gship},#{bship}+#{aship}+#{gship},#{sdate},#{id})
+	</insert>
+    <select id="selectAllShipByPage"  resultType="map" parameterType="map">
+				select s.sid,e.username username,s.bship,s.aship+i.staut as aship,s.gship,s.total,s.sdate from ship s,euser e,income i where e.eid=#{eid} and e.eid=s.eid and s.id=i.id order by sid limit #{startIndex}, #{perPageSize}
+	</select>
+	<select id="selectAllShipByPage1"  resultType="map" parameterType="map">
+				select s.sid,e.username username,s.bship,s.aship+i.staut as aship,s.gship,s.total,s.sdate from ship s,euser e,income i where e.eid=s.eid and s.id=i.id order by sid limit #{startIndex}, #{perPageSize}
+	</select>
+</mapper>

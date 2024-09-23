@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.posDao">
+    <select id="showDP"  resultType="com.pojo.positions">
+		select * from positions
+	</select>
+	<select id="fixById"  resultType="com.pojo.positions" parameterType="int">
+		select *from positions where pid=#{pid}
+	</select>
+	<update parameterType="com.pojo.positions" id="Fix">
+       update positions set pname=#{pname},cdate=#{cdate} where pid=#{pid}
+	</update>
+	<insert id="toAdd" parameterType="com.pojo.positions">
+		insert into positions(pid,pname,cdate) values (null, #{pname},#{cdate})
+	</insert>
+	<select id="selectAllPosByPage"  resultType="com.pojo.positions" parameterType="map">
+		select * from positions order by pid limit #{startIndex}, #{perPageSize}
+	</select>
+</mapper>

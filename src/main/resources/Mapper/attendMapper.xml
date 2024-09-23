@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.attendDao">
+        <select id="ShowDA"  resultType="map" parameterType="int">
+            select aid,e.username username,p.pname pname,startd,endd,staut from attends a,euser e,positions p where a.eid=e.eid and a.pid=p.pid and a.eid=#{eid}
+        </select>
+    <select id="ShowDA1"  resultType="map">
+            select aid,e.username username,p.pname pname,startd,endd,staut from attends a,euser e,positions p where a.eid=e.eid and a.pid=p.pid
+        </select>
+    <select id="fixById"  resultType="map" parameterType="Integer">
+            select  a.aid,a.eid,p.pname,a.startd,a.endd,a.staut from attends a,euser e,positions p where a.eid=e.eid and a.pid=p.pid and a.aid=#{aid}
+	</select>
+    <update parameterType="com.pojo.attends" id="Fix">
+       update attends set pid=#{pid},startd=#{startd},endd=#{endd} where aid=#{aid}
+	</update>
+    <delete id="delete" parameterType="int">
+			delete from attends where aid=#{aid}
+	</delete>
+    <insert id="toAdd" parameterType="com.pojo.attends">
+		insert into attends(aid,eid,pid,startd,endd,staut) values (null,#{eid}, #{pid},#{startd},#{endd},#{staut})
+	</insert>
+    <select id="selectAllAttendsByPage"  resultType="map" parameterType="map">
+		select a.aid,e.username username,p.pname pname,a.startd,a.endd,a.staut  from attends a,euser e,positions p where  e.eid=a.eid and p.pid=a.pid  and a.eid=#{eid} order by aid limit #{startIndex}, #{perPageSize}
+	</select>
+    <select id="selectAllAttendsByPage1"  resultType="map" parameterType="map">
+		select a.aid,e.username username,p.pname pname,a.startd,a.endd,a.staut  from attends a,euser e,positions p where  e.eid=a.eid and p.pid=a.pid order by aid limit #{startIndex}, #{perPageSize}
+	</select>
+    </mapper>

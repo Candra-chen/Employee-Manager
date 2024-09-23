@@ -1,0 +1,98 @@
+.main{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+body ul,li {
+    list-style-type:none;
+}
+.header{
+    position:fixed;
+    /* left:200px; */
+    top:2px;
+    right:0;
+    background-color: #6495ED;
+    color: white;
+    height: 10%;
+    width: 100%;
+
+}
+.bodys{
+    position:fixed;
+    /* left:200px; */
+    /* background-color: #eeffcd; */
+    height: 85%;
+    width: 100%;
+}
+.leftMenu{
+    position: fixed;
+    left:0;
+    top:10%;
+    bottom:0;
+    font-size: small;
+    background-color:white;
+    width:50%;
+    /* min-width: 260px; */
+    /* height:100%; */
+    /* overflow: hidden; */
+}
+.mainContent{
+    position: fixed;
+    left:15%;
+    top:10%;
+    bottom:0;
+    color: black;
+    background-color: white;
+    right:0;
+}
+.le1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    /* width: 300px; */
+    /* background-color: #f1f1f1; */
+}
+
+li a {
+    /*display: none;*/
+    display: block;
+    color: black;
+    padding: 20px 16px;
+    text-decoration: none;
+}
+
+/* 鼠标移动到选项上修改背景颜色 */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+.lh{
+    float: left;
+    list-style-type: none;
+    content-visibility: left;
+    color:black;
+    font-family: Lucida Calligraphy, cursive, serif, sans-serif;
+    font-size:30px;
+    font-weight: bolder;
+}
+.rh{
+    float: left;
+    /* left:500px; */
+    margin-left: 80%;
+    position:fixed;
+    /* content-visibility: right; */
+}
+.iframe
+{
+    min-width: 100%;
+    min-height: 700px;
+    margin: auto;
+    border: none;
+
+}
+#menu1,#menu2,#menu3,#menu4,#menu5,#menu6,#menu7{
+    display: none;
+}
+

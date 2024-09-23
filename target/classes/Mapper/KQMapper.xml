@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.KQDao">
+    <select id="toKQ"  resultType="map" parameterType="int">
+            select cid,e.username username,checkstaut,chdate from check1 c,euser e where c.eid=e.eid and e.eid=#{eid}
+        </select>
+    <select id="toKQ1"  resultType="map">
+            select cid,e.username username,checkstaut,chdate from check1 c,euser e where c.eid=e.eid
+        </select>
+    <insert id="addKQ" parameterType="com.pojo.check1">
+		insert into check1(cid,eid,checkstaut,chdate) values (null, #{eid}, #{checkstaut},#{chdate})
+	</insert>
+    <select id="selectAllKQByPage"  resultType="map" parameterType="map">
+		select c.cid,e.username username,c.checkstaut,c.chdate  from check1 c,euser e where c.eid=e.eid  and c.eid=#{eid} order by cid limit #{startIndex}, #{perPageSize}
+	</select>
+    <select id="selectAllKQByPage1"  resultType="map" parameterType="map">
+		select c.cid,e.username username,c.checkstaut,c.chdate  from check1 c,euser e where c.eid=e.eid order by cid limit #{startIndex}, #{perPageSize}
+	</select>
+</mapper>
